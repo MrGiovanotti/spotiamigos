@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spotiamigos/utils/RoutesUtils.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -7,6 +8,14 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text('Spotiamigos'),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.settings),
+              onPressed: () {
+                Navigator.pushNamed(context, RoutesUtils.CONFIG);
+              },
+            )
+          ],
         ),
       ),
     );
