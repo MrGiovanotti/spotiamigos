@@ -1,15 +1,16 @@
 // To parse this JSON data, do
 //
-//     final plan = planFromJson(jsonString);
+//     final participant = participantFromJson(jsonString);
 
 import 'dart:convert';
 
-Plan planFromJson(String str) => Plan.fromJson(json.decode(str));
+Participant participantFromJson(String str) =>
+    Participant.fromJson(json.decode(str));
 
-String planToJson(Plan data) => json.encode(data.toJson());
+String participantToJson(Participant data) => json.encode(data.toJson());
 
-class Plan {
-  Plan({
+class Participant {
+  Participant({
     this.id,
     this.name,
     this.firstMonthCompleted,
@@ -23,7 +24,7 @@ class Plan {
   DateTime lastPaymentDate;
   double debt;
 
-  factory Plan.fromJson(Map<String, dynamic> json) => Plan(
+  factory Participant.fromJson(Map<String, dynamic> json) => Participant(
         id: json["id"],
         name: json["name"],
         firstMonthCompleted: DateTime.parse(json["firstMonthCompleted"]),

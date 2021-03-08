@@ -1,4 +1,4 @@
-import 'package:spotiamigos/models/participant.dart';
+import 'package:spotiamigos/models/plan.dart';
 import 'package:spotiamigos/services/database_service.dart';
 import 'package:spotiamigos/utils/constants_utils.dart';
 
