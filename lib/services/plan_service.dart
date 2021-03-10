@@ -6,6 +6,8 @@ class PlanService {
   static PlanService _planService;
   static DatabaseService _databaseService = DatabaseService();
 
+  static const String _TABLE = ConstantsUtils.PLAN_TABLE;
+
   PlanService._();
 
   factory PlanService() {
@@ -17,38 +19,36 @@ class PlanService {
 
   save(Plan plan) async {
     final db = await _databaseService.getDatabase;
-    return await db.insert(ConstantsUtils.PLAN_TABLE, plan.toJson());
+    await db.insert(_TABLE, plan.toJson());
   }
 
   Future<Plan> findById(int id) async {
     final db = await _databaseService.getDatabase;
-    final result = await db
-        .query(ConstantsUtils.PLAN_TABLE, where: "id = ?", whereArgs: [id]);
+    final result = await db.query(_TABLE, where: "id = ?", whereArgs: [id]);
     return result.isNotEmpty ? Plan.fromJson(result.first) : null;
   }
 
   Future<List<Plan>> findAll() async {
     final db = await _databaseService.getDatabase;
-    final result = await db.query(ConstantsUtils.PLAN_TABLE);
+    final result = await db.query(_TABLE);
     return result.isNotEmpty
         ? result.map((e) => Plan.fromJson(e)).toList()
         : [];
   }
 
-  Future<int> update(Plan plan) async {
+  update(Plan plan) async {
     final db = await _databaseService.getDatabase;
-    return await db.update(ConstantsUtils.PLAN_TABLE, plan.toJson(),
-        where: "id = ?", whereArgs: [plan.id]);
+    await db
+        .update(_TABLE, plan.toJson(), where: "id = ?", whereArgs: [plan.id]);
   }
 
-  Future<int> delete(int id) async {
+  delete(int id) async {
     final _db = await _databaseService.getDatabase;
-    return _db
-        .delete(ConstantsUtils.PLAN_TABLE, where: "id = ?", whereArgs: [id]);
+    _db.delete(_TABLE, where: "id = ?", whereArgs: [id]);
   }
 
-  Future<int> deleteAll() async {
+  deleteAll() async {
     final db = await _databaseService.getDatabase;
-    return db.delete(ConstantsUtils.PLAN_TABLE);
+    db.delete(_TABLE);
   }
 }
