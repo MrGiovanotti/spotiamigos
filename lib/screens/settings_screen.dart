@@ -15,6 +15,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
   final PlanBloc _planBloc = PlanBloc();
 
   @override
+  void dispose() {
+    _planBloc.dispose();
+    super.dispose();
+  }
+
+  @override
   void initState() {
     super.initState();
     _planBloc.planSink.add(GetAllPlansEvent());
