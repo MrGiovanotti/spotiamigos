@@ -17,6 +17,15 @@ class HomeScreen extends StatelessWidget {
             )
           ],
         ),
+        body: Center(
+          child: Text('Hola'),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.pushNamed(context, RoutesUtils.ADD_FRIEND);
+          },
+          child: Icon(Icons.person_add),
+        ),
       ),
     );
   }
